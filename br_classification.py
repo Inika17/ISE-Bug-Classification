@@ -70,7 +70,7 @@ import os
 import subprocess
 # Choose the project (options: 'pytorch', 'tensorflow', 'keras', 'incubator-mxnet', 'caffe')
 project = 'pytorch'
-path = f'{project}.csv'
+path = f'datasets/{project}.csv'
 
 pd_all = pd.read_csv(path)
 pd_all = pd_all.sample(frac=1, random_state=999)  # Shuffle
@@ -146,8 +146,8 @@ for repeated_time in range(REPEAT):
         ngram_range=(1, 2),
         max_features=1000  # Adjust as needed
     )
-    X_train = tfidf.fit_transform(train_text)
-    X_test = tfidf.transform(test_text)
+    X_train = tfidf.fit_transform(train_text).toarray()
+    X_test = tfidf.transform(test_text).toarray()
    
     # --- 4.3 Naive Bayes model & GridSearch ---
     clf = GaussianNB()
