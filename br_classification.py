@@ -137,7 +137,7 @@ for project in projects:
         # --- 4.1 Split into train/test ---
         indices = np.arange(data.shape[0])
         train_index, test_index = train_test_split(
-            indices, test_size=0.2, random_state=repeated_time
+            indices, test_size=0.3, random_state=repeated_time
         )
 
         train_text = data[text_col].iloc[train_index]
@@ -188,9 +188,8 @@ for project in projects:
         f1_scores.append(f1)
 
         # AUC
-        # If labels are 0/1 only, this works directly.
-        # If labels are something else, adjust pos_label accordingly.
-        fpr, tpr, _ = roc_curve(y_test, y_pred, pos_label=1)
+        y_scores = best_clf.predict_proba(X_test)[:, 1]
+        fpr, tpr, _ = roc_curve(y_test, y_scores, pos_label=1)
         auc_val = auc(fpr, tpr)
         auc_values.append(auc_val)
 
@@ -233,4 +232,4 @@ for project in projects:
 
     print(f"\nResults have been saved to: {out_csv_name}")
 
-print("\nAll baseline data gathered successfully!")
+print("\nAll SVM data gathered successfully!")
