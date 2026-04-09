@@ -152,7 +152,7 @@ for project in projects:
         X_train = tfidf.fit_transform(train_text)
         X_test = tfidf.transform(test_text)
     
-        # --- 4.3 Naive Bayes model & GridSearch ---
+        # --- 4.3 SVM model & GridSearch ---
         clf = SVC(kernel='linear', class_weight='balanced')
         grid = GridSearchCV(
             clf,
