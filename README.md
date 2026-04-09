@@ -1,3 +1,3 @@
 # ISE-Bug-Classification
 
-Please read manual.txt, replication,txt and requirements.txt first.
+Please read manual.pdf, replication.pdf and requirements.pdf first.
